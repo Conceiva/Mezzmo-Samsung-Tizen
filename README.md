@@ -1,4 +1,4 @@
-# Mezzmo app for Samsung Smart TVs running legacy Smart Hub OS
+# Mezzmo app for Samsung Smart TVs running Tizen Smart Hub OS
 
 Features:
 - Play and resume videos
