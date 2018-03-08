@@ -11,6 +11,7 @@ var GuiDisplay_MediaItems = {
 		currentMediaType : "",
 		
 		selectedItem : 0,
+		prevSelectedItem : 0,
 		selectedBannerItem : 0,
 		topLeftItem : 0,
 		MAXCOLUMNCOUNT : 6, //Default TV
@@ -33,6 +34,11 @@ var GuiDisplay_MediaItems = {
 		startParams : [],
 		isLatest : false,
 		loadingMore : false
+}
+
+GuiDisplay_MediaItems.restoreSelectedItem = function() {
+	this.selectedItem = this.prevSelectedItem;
+	this.updateSelectedItems();
 }
 
 GuiDisplay_MediaItems.onFocus = function() {
@@ -662,7 +668,14 @@ GuiDisplay_MediaItems.processSelectedItem = function() {
 		if (this.PlaylistId.indexOf("cvasearch:") == 0) {
 			this.ItemData[this.selectedItem].parentId = this.PlaylistId;
 		}
+		
 		Support.processSelectedItem("GuiDisplay_MediaItems",this.ItemData,this.startParams,this.selectedItem,this.topLeftItem,null,this.genreType,this.isLatest); 	
+
+		if (this.ItemData[this.selectedItem].MediaType == "Audio") {
+			this.prevSelectedItem = this.selectedItem;
+			this.selectedItem = -1;
+			GuiDisplay_MediaItems.updateSelectedItems();
+		}
 	}
 }
 
@@ -739,6 +752,9 @@ GuiDisplay_MediaItems.processLeftKey = function() {
 		}
 	} else if (this.selectedItem % this.MAXCOLUMNCOUNT == 0){ //Going left from the first column.
 		this.openMenu();
+		this.prevSelectedItem = this.selectedItem;
+		this.selectedItem = -1;
+		this.updateSelectedItems();
 	} else {
 		this.selectedItem--;
 		if (this.selectedItem < 0) {

@@ -504,7 +504,7 @@ Server.testConnectionSettings = function (server,fromFile) {
 	if (xmlHttp) {
 		if (server.indexOf("http://") != 0) {
 			var url = "http://" + server + "/";
-			xmlHttp.open("GET", "http://" + server + "/desc",false);
+			xmlHttp.open("GET", "http://" + server + "/desc",true);
 			xmlHttp.setRequestHeader("Content-Type", 'text/xml');
 			xmlHttp.onreadystatechange = function () {
 				GuiNotifications.setNotification(server + " result: " + xmlHttp.status,"Network Status",true);
@@ -592,6 +592,9 @@ Server.testConnectionSettings = function (server,fromFile) {
 						
 						}
 
+						//hide Loading Div
+						document.getElementById("loading").style.visibility = "hidden";
+						
 						if (error == 0) {   
 							//Set Server.serverAddr!
 							Server.setServerAddr(browseURL);
@@ -607,6 +610,8 @@ Server.testConnectionSettings = function (server,fromFile) {
 						}
 						//}
 					} else if (xmlHttp.status === 0) {
+						//hide Loading Div
+						document.getElementById("loading").style.visibility = "hidden";
 						GuiNotifications.setNotification("Your Mezzmo server is not responding.","Network Error "+xmlHttp.status,true);
 						Support.removeSplashScreen();
 						if (fromFile == true) {
@@ -620,6 +625,8 @@ Server.testConnectionSettings = function (server,fromFile) {
 							}, 3000);
 						}
 					} else {
+						//hide Loading Div
+						document.getElementById("loading").style.visibility = "hidden";
 						GuiNotifications.setNotification("Mezzmo server connection error.","Network Error "+xmlHttp.status,true);
 						Support.removeSplashScreen();
 						if (fromFile == true) {
@@ -628,13 +635,20 @@ Server.testConnectionSettings = function (server,fromFile) {
 							}, 3000);
 		
 						} else {
-							setTimeout(function(){
-								GuiPage_NewServer.start();
-							}, 3000);
+							//setTimeout(function(){
+							//	GuiPage_NewServer.start();
+							//}, 3000);
 						}
 					}
 				}
 			};
+			
+			xmlHttp.onerror = function(e) {
+				//hide Loading Div
+				document.getElementById("loading").style.visibility = "hidden";
+				GuiNotifications.setNotification("Failed to connect to Mezzmo server.","Network Error",true);
+			};
+			
 			xmlHttp.send(null);
 		}
 		else {

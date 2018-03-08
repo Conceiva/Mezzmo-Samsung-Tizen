@@ -179,7 +179,7 @@ GuiPlayer.stopPlayback = function() {
 	this.Status = "STOPPED";
 	
 	if (this.startParams[0] != 'Trailer') {
-		var bookmark = this.currentTime / 1000;
+		var bookmark = this.videoElem.currentTime;
 		var hms = this.PlayerData.duration;   // your input string
 		var a = hms.split(':'); // split it at the colons
 
@@ -464,7 +464,7 @@ GuiPlayer.setCurrentTime = function() {
 			totalseconds = GuiPlayer.PlayerData.trailerDuration;
 		}
 		
-		percentage = (100 * this.currentTime / (totalseconds * 1000));	
+		percentage = (100 * this.currentTime / (totalseconds));	
 		document.getElementById("guiPlayer_Info_ProgressBar_Current").style.width = percentage + "%";
 		document.getElementById("guiPlayer_Info_Time").innerHTML = Support.convertTicksToTimeSingle(this.currentTime * 1000);
 		document.getElementById("guiPlayer_Info_Time_Total").innerHTML = Support.convertTicksToTimeSingle((totalseconds * 1000));
@@ -747,11 +747,11 @@ GuiPlayer.handleFFKey = function() {
     if(this.Status == "PLAYING") {
     	if (this.PlayMethod == "DirectPlay") {
     		FileLog.write("Playback : Fast Forward : Direct Play");
-    		GuiPlayer.updateSubtitleTime(this.currentTime + 29000,"FF");
-        	this.videoElem.currentTime = this.currentTime + 30;
+    		GuiPlayer.updateSubtitleTime(this.videoElem.currentTime + 29,"FF");
+        	this.videoElem.currentTime = this.videoElem.currentTime + 30;
     	} else {
     		FileLog.write("Playback : Fast Forward : Transcoding");
-    		this.newPlaybackPosition((this.currentTime + 30000) * 10000);
+    		this.newPlaybackPosition((this.videoElem.currentTime + 30));
     	}
 		document.getElementById("guiPlayer_Subtitles").style.bottom="100px";
 		if (document.getElementById("guiPlayer_Osd").style.opacity == 0) {
@@ -777,11 +777,11 @@ GuiPlayer.handleRWKey = function() {
     if(this.Status == "PLAYING") {
     	if (this.PlayMethod == "DirectPlay") {
     		FileLog.write("Playback : Rewind : Direct Play");
-    		GuiPlayer.updateSubtitleTime(this.currentTime - 13000,"RW");
-    		this.videoElem.currentTime = this.currentTime - 10
+    		GuiPlayer.updateSubtitleTime(this.videoElem.currentTime - 13,"RW");
+    		this.videoElem.currentTime = this.videoElem.currentTime - 10
     	} else {
     		FileLog.write("Playback : Rewind : Transcoding");
-    		this.newPlaybackPosition((this.currentTime - 10000) * 10000);
+    		this.newPlaybackPosition((this.videoElem.currentTime - 10));
     	}
 		document.getElementById("guiPlayer_Subtitles").style.bottom="100px";
 		if (document.getElementById("guiPlayer_Osd").style.opacity == 0) {
@@ -919,7 +919,7 @@ GuiPlayer.newSubtitleIndex = function (newSubtitleIndex) {
 			this.setSubtitles(this.playingSubtitleIndex);
 		    
 		    //Update subs index
-		    this.updateSubtitleTime(this.currentTime,"NewSubs");
+		    this.updateSubtitleTime(this.videoElem.currentTime,"NewSubs");
 		    
 		    //Load Back to main page GUI
 			document.getElementById("body").onkeydown = document.getElementById("GuiPlayer").onkeydown;

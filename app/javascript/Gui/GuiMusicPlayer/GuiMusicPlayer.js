@@ -354,6 +354,7 @@ GuiMusicPlayer.keyDown = function() {
 				}
 				document.getElementById("body").onkeydown = document.getElementById(this.playedFromPage).onkeydown;
 				if (this.playedFromPage == "GuiDisplay_MediaItems") {
+					GuiDisplay_MediaItems.restoreSelectedItem();
 					GuiDisplay_MediaItems.onFocus();
 				}
 			}
@@ -403,7 +404,9 @@ GuiMusicPlayer.stopPlayback = function() {
 	//this.currentPlayingItem = 0;
 	this.queuedItems.length = 0;
 	this.shuffledItems.length = 0;
-	this.audioElem.pause();
+	if (this.audioElem != null) {
+		this.audioElem.pause();
+	}
 	
 	document.getElementById("guiMusicPlayerPlay").style.backgroundImage="url('images/musicplayer/play-29x37.png')";
 	document.getElementById("guiMusicPlayerPause").style.backgroundImage="url('images/musicplayer/pause-32x37.png')";
@@ -466,14 +469,45 @@ GuiMusicPlayer.handleNextKey = function() {
 		this.currentPlayingItem = 0;
 	}
 	
-	if (this.queuedItems.length <= this.currentPlayingItem) {	
+	if ((this.shuffle == 'off' && this.queuedItems.length <= this.currentPlayingItem) ||
+		(this.shuffle == 'on' && this.shuffledItems.length <= this.currentPlayingItem)) {	
 		this.returnToPage();
 	} else {
 		//Play Next Item
 		if (this.shuffle == 'off') {
+			while (this.queuedItems[this.currentPlayingItem].MediaType != "Audio") {
+				
+				if (this.repeat != 'one') {
+					this.currentPlayingItem++;
+				}
+				
+				if (this.queuedItems.length <= this.currentPlayingItem &&
+					this.repeat == 'on') {	
+					this.currentPlayingItem = 0;
+				}
+				
+				if (this.queuedItems.length - 1 <= this.currentPlayingItem) {	
+					break;
+				}
+			}
 			this.videoURL = this.queuedItems[this.currentPlayingItem].contentUrl;
 		}
 		else {
+			while (this.shuffledItems[this.currentPlayingItem].MediaType != "Audio") {
+				
+				if (this.repeat != 'one') {
+					this.currentPlayingItem++;
+				}
+				
+				if (this.queuedItems.length <= this.currentPlayingItem &&
+					this.repeat == 'on') {	
+					this.currentPlayingItem = 0;
+				}
+				
+				if (this.queuedItems.length - 1 <= this.currentPlayingItem) {	
+					break;
+				}
+			}
 			this.videoURL = this.shuffledItems[this.currentPlayingItem].contentUrl;
 		}
 		console.log ("Next " + this.videoURL);
@@ -495,7 +529,7 @@ GuiMusicPlayer.handlePreviousKey = function() {
 	var timeOfStoppedSong = Math.floor((this.currentTime % 60000) / 1000);
 		
 	//Server.videoStopped(this.queuedItems[this.currentPlayingItem].id,this.queuedItems[this.currentPlayingItem].MediaSources[0].id,this.currentTime,"DirectStream");
-	this.audioElem.stop();
+	this.audioElem.pause();
 	this.Status = "STOPPED";
 		
 	//If song over 5 seconds long, previous song returns to start of current song, else go back to previous
@@ -514,9 +548,37 @@ GuiMusicPlayer.handlePreviousKey = function() {
 	} else {
 		//Play Next Item
 		if (this.shuffle == 'off') {
+			while (this.queuedItems[this.currentPlayingItem].MediaType != "Audio") {
+				
+				this.currentPlayingItem--;
+				
+				if (this.queuedItems.length <= this.currentPlayingItem &&
+					this.repeat == 'on') {	
+					this.currentPlayingItem = this.queuedItems.length - 1;
+				}
+				
+				if (-1 == this.currentPlayingItem) {	
+					this.currentPlayingItem = 0;
+					break;
+				}
+			}
 			this.videoURL = this.queuedItems[this.currentPlayingItem].contentUrl;
 		}
 		else {
+			while (this.shuffledItems[this.currentPlayingItem].MediaType != "Audio") {
+				
+				this.currentPlayingItem--;
+				
+				if (this.shuffledItems.length <= this.currentPlayingItem &&
+					this.repeat == 'on') {	
+					this.currentPlayingItem = this.shuffledItems.length - 1;
+				}
+
+				if (-1 == this.currentPlayingItem) {	
+					this.currentPlayingItem = 0;
+					break;
+				}
+			}
 			this.videoURL = this.shuffledItems[this.currentPlayingItem].contentUrl;
 		}
 		console.log ("Next " + this.videoURL);
@@ -625,21 +687,21 @@ GuiMusicPlayer.handleError = function(e) {
 	else if (this.error && typeof this.error.code === "number") {
 	    switch (this.error.code) {
 	      case MediaError.MEDIA_ERR_ABORTED:
-	        Player.OnConnectionFailed.call(PlayerEvtListener, e);
+	    	  GuiMusicPlayer.handleNextKey();
 	        break;
 	
 	      case MediaError.MEDIA_ERR_ENCRYPTED:
 	      case MediaError.MEDIA_ERR_DECODE:
 	      case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-	        Player.OnRenderError.call(Player, e);
+	    	  GuiMusicPlayer.handleNextKey();
 	        break;
 	
 	      case MediaError.MEDIA_ERR_NETWORK:
-	        Player.OnNetworkDisconnected.call(Player, e);
+	    	  GuiMusicPlayer.handleNextKey();
 	        break;
 	
 	      default:
-	        PlayerEvtListener.OnRenderError.call(Player, e);
+	    	  GuiMusicPlayer.handleNextKey();
 	    }
     }
 		
@@ -735,7 +797,7 @@ GuiMusicPlayer.OnStreamInfoReady = function() {
 
 GuiMusicPlayer.stopOnAppExit = function() {
 	if (this.audioElem != null) {
-		this.audioElem.stop();
+		this.audioElem.pause();
 		this.audioElem = null;
 	}		
 }

@@ -180,7 +180,10 @@ GuiImagePlayer.keyDown = function() {
 		keyCode = "VOID";
 	}
 	
-	switch(keyCode){		
+	switch(keyCode){	
+		case Common.API.KEY_DOWN:
+			event.preventDefault();
+			break;
 		case Common.API.KEY_STOP:   
 		case Common.API.KEY_RETURN:
 		case 169:
@@ -204,6 +207,7 @@ GuiImagePlayer.keyDown = function() {
 			Support.processReturnURLHistory();
 			break;
 		case Common.API.KEY_RIGHT:
+			event.preventDefault();
 			console.log("RIGHT");
 			this.imageIdx++;
 			if (this.imageIdx == this.images.length) {
@@ -212,6 +216,7 @@ GuiImagePlayer.keyDown = function() {
 			GuiImagePlayer.prepImage(GuiImagePlayer.imageIdx);
 			break;
 		case Common.API.KEY_LEFT:
+			event.preventDefault();
 			console.log("LEFT");
 			this.imageIdx--;
 			if (this.imageIdx < 0) {

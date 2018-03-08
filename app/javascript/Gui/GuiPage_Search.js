@@ -132,7 +132,7 @@ GuiPage_Search.processSelectedItem = function() {
 GuiPage_Search.keyDown = function() {
 	var keyCode = event.keyCode;
 	console.log("Key pressed: " + keyCode);
-	
+
 	if (document.getElementById("Notifications").style.visibility == "") {
 		document.getElementById("Notifications").style.visibility = "hidden";
 		document.getElementById("NotificationText").innerHTML = "";
@@ -185,14 +185,21 @@ GuiPage_Search.keyDown = function() {
 			break;	
 		case Common.API.KEY_ENTER:
 		case Common.API.KEY_PANEL_ENTER:
+		case 65376:
 			console.log("ENTER");
-	        var searchString = document.getElementById("searchInput").value;
-	        if (searchString != "") {
-				var url = Server.getServerAddr();	
-				
-				Support.updateURLHistory("GuiPage_Search",GuiPage_Search.startParams[0],GuiPage_Search.startParams[1],null,null,0,0,null,searchString,null);
-				GuiDisplay_MediaItems.start("Search: " + searchString,url, 0,0, GuiPage_Search.ItemData, "cvasearch:" + searchString, null);
-	        }
+			event.preventDefault();
+			if (document.getElementById("searchInput") != null) {
+		        var searchString = document.getElementById("searchInput").value;
+		        if (searchString != "") {
+					var url = Server.getServerAddr();	
+					var thisItem = {"title":"Search", "poster":"images/ic_search_white.png", "Overview":"Results of search for '" + searchString + "'"};
+					thisItem.title = "Search";
+					thisItem.Overview = "Results of search for '" + searchString + "'";
+					thisItem.poster ="images/ic_search_white.png";
+					Support.updateURLHistory("GuiPage_Search",GuiPage_Search.startParams[0],GuiPage_Search.startParams[1],null,null,0,0,null,searchString,thisItem);
+					GuiDisplay_MediaItems.start("Search: " + searchString,url, 0,0, GuiPage_Search.ItemData, "cvasearch:" + searchString, thisItem);
+		        }
+			}
 			break;	
 		case Common.API.KEY_TOOLS:
 			event.preventDefault();

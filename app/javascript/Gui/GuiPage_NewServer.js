@@ -9,6 +9,8 @@ GuiPage_NewServer.start = function() {
 	console.log("Page Enter : GuiPage_NewServer");
 	GuiHelper.setControlButtons(null,null,null,null,"Return");
 		
+	document.getElementById("Counter").innerHTML = "";
+	
 	//Insert html into page
 	document.getElementById("pageContent").innerHTML = "<div class='GuiPage_NewServer12key'> \
 		<p style='padding-bottom:5px;'>Enter the IP address & port number of your Mezzmo server. <br>(You can leave the port blank for 53168)</p> \
@@ -142,11 +144,18 @@ GuiPage_NewServer.processServer = function() {
     	//Check if host is empty
     	if (host == "") {
     		//not valid
+			//hide Loading Div
+			document.getElementById("loading").style.visibility = "hidden";
         	GuiNotifications.setNotification("Please re-enter your server details.","Incorrect Details",true);
     	} else {
     		document.getElementById("pageContent").focus();                                   
             //Timeout required to allow notification command above to be displayed
-            setTimeout(function(){Server.testConnectionSettings(host,false);}, 1000);
+            setTimeout(function(){
+
+				//show Loading Div
+				document.getElementById("loading").style.visibility = "";
+				Server.testConnectionSettings(host,false);
+			}, 1000);
     	}
     } else {	
     	var Port = document.getElementById('port').value;
@@ -157,7 +166,12 @@ GuiPage_NewServer.processServer = function() {
         var ip = IP1 + '.' +  IP2 + '.' +  IP3 + '.' +  IP4 + ':' + Port;
         document.getElementById("pageContent").focus();                                   
         //Timeout required to allow notification command above to be displayed    
-        setTimeout(function(){Server.testConnectionSettings(ip,false);}, 1000);
+        setTimeout(function(){
+
+			//show Loading Div
+			document.getElementById("loading").style.visibility = "";
+        	Server.testConnectionSettings(ip,false);
+        }, 1000);
         
     }	
 }
@@ -177,8 +191,10 @@ GuiPage_NewServer.keyDown = function()
 	
 	switch(keyCode)
 	{
+		case 169:
 		case Common.API.KEY_RETURN:
 			console.log("RETURN");
+			Support.processReturnURLHistory();
 			break;
 		case Common.API.KEY_LEFT:
 			console.log("LEFT");	
@@ -186,6 +202,7 @@ GuiPage_NewServer.keyDown = function()
 			break;
 		case Common.API.KEY_RIGHT:
 			console.log("RIGHT");	
+			event.preventDefault();
 			this.focusRight();
 			break;
 		case Common.API.KEY_DOWN:

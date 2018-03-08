@@ -674,9 +674,11 @@ GuiPage_ItemDetails.updateItemUserStatus = function(item) { //Watched and Favour
 }
 
 GuiPage_ItemDetails.openMenu = function() {
-	Support.updateURLHistory("GuiPage_ItemDetails",this.startParams[0],this.startParams[1],null,null,this.selectedItem,null,true);
-	document.getElementById(this.menuItems[this.selectedItem]).className = "FilmListSingle"; 
-	GuiMainMenu.requested("GuiPage_ItemDetails",this.menuItems[this.selectedItem],"FilmListSingle highlightMezzmoBackground");
+	if (document.getElementById(this.menuItems[this.selectedItem]) != null) {
+		Support.updateURLHistory("GuiPage_ItemDetails",this.startParams[0],this.startParams[1],null,null,this.selectedItem,null,true);
+		document.getElementById(this.menuItems[this.selectedItem]).className = "FilmListSingle"; 
+		GuiMainMenu.requested("GuiPage_ItemDetails",this.menuItems[this.selectedItem],"FilmListSingle highlightMezzmoBackground");
+	}
 }
 
 GuiPage_ItemDetails.processLeftKey = function() {
@@ -691,13 +693,6 @@ GuiPage_ItemDetails.processLeftKey = function() {
 		return;
 	}
 	
-    if (this.trailerState == sf.service.VideoPlayer.STATE_PLAYING || 
-    		this.trailerState == sf.service.VideoPlayer.STATE_BUFFERING) {
-		sf.service.VideoPlayer.pause();
-	}
-	if (this.trailerState != null) {
-		sf.service.VideoPlayer.hide();
-	}
 	this.openMenu();
 };
 

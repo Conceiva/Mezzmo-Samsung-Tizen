@@ -293,6 +293,10 @@ GuiMainMenu.processReturnKey = function() {
 			GuiMusicPlayer.showMusicPlayer(this.selectedDivId);
 		}
 
+		if (this.pageSelected == "GuiDisplay_MediaItems") {
+			GuiDisplay_MediaItems.restoreSelectedItem();
+		}
+		
 		//Set Page GUI elements Correct & Set Focus
 		if (this.selectedDivId != null) {
 			if (this.selectedDivClass == "UNDEFINED") {

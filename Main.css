@@ -197,7 +197,7 @@ input[type="password"]
 	position: relative;
 	left: 5px; top: 0px;
 	padding-left: 5px;
-	width: 35px;
+	width: 55px;
 	height: 65px;
 	background-position: center; 
 	background-repeat: no-repeat;
@@ -418,8 +418,8 @@ input[type="password"]
 	position:absolute;
 	padding:30px;
 	top:200px;
-	left:300px;
-	width:740px;
+	left:540px;
+	width:840px;
 	height:300px;
 	text-align:center;
 	background-color:#303030;
@@ -797,8 +797,8 @@ input[type="password"]
 /*----------------------------------------------------------------------------------------------*/
 
 .User {
-	width: 300px;
-    height: 300px;
+	width: 180px;
+    height: 180px;
     display:inline-block;
     position:relative; 
     margin:8px;

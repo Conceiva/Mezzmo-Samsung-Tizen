@@ -14,7 +14,7 @@ GuiPage_Servers.getMaxDisplay = function() {
 
 GuiPage_Servers.start = function(runAutoLogin) {
 	console.log("Page Enter : GuiPage_Servers");
-	GuiHelper.setControlButtons("Default ",null,null,"Delete","Exit");
+	GuiHelper.setControlButtons(null,null,null,null,null);
 	
 	GuiMainMenu.changeVisibility("hidden");
 	
@@ -31,7 +31,7 @@ GuiPage_Servers.start = function(runAutoLogin) {
 	Support.removeSplashScreen();
 	
 	//Change Display
-	document.getElementById("pageContent").innerHTML = "<div style='padding-top:60px;text-align:center'> \
+	document.getElementById("pageContent").innerHTML = "<div style='padding-top:260px;text-align:center'> \
 		<div id=GuiPage_Servers_allusers></div></div>" +
 				"<div style='text-align:center' class='loginOptions' >" +
 				"<p style='margin-top:15px'>Use the UP button to set the selected server as the default auto connect server</p>" +
@@ -143,11 +143,13 @@ GuiPage_Servers.keyDown = function()
 			this.updateSelectedUser();
 			break;
 		case Common.API.KEY_DOWN:
+			event.preventDefault();
 			if (this.selectedItem != 0) {
 				File.deleteServer(this.selectedItem - 1);
 			}
 			break;
 		case Common.API.KEY_UP:
+			event.preventDefault();
 			if (this.selectedItem != 0) {
 				File.setDefaultServer(this.selectedItem - 1);
 			}
