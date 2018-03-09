@@ -18,7 +18,7 @@ GuiUsers.getMaxDisplay = function() {
 
 GuiUsers.start = function(runAutoLogin) {
 	console.log("Page Enter : GuiUsers");
-	GuiHelper.setControlButtons(null,null,null,null,"Exit  ");
+	//GuiHelper.setControlButtons(null,null,null,null,"Exit  ");
 	Support.removeSplashScreen();
 	
 	//Reset Properties

@@ -1236,13 +1236,12 @@ input[type="password"]
 
 .SeriesOverview {
 	position:absolute;
-	font-size:1.0em;
+	font-size:0.9em;
 	top:65px;
 	left:280px;
 	width:1540px;
 	height:160px;
 	padding-right:10px;
-	font-size:1.1em;
 	max-height:155px;
 	overflow-y:hidden;
 	border-radius: 10px;
@@ -2409,8 +2408,8 @@ input[type="password"]
 	position:absolute;
 	bottom:10px;
 	left:1340px;;
-	width:46px;
-    height:38px;
+	width:64px;
+    height:64px;
 	background-image:url('images/musicplayer/play-29x37.png');
 	background-repeat:no-repeat;
     background-position:center;
@@ -2419,9 +2418,9 @@ input[type="password"]
 .guiMusicPlayerStop {
 	position:absolute;
 	bottom:10px;
-	left:1390px;
-	width:46px;
-    height:38px;
+	left:1408px;
+	width:64px;
+    height:64px;
 	background-image:url('images/musicplayer/stop-37x37.png');
 	background-repeat: no-repeat;
     background-position:center;
@@ -2430,9 +2429,9 @@ input[type="password"]
 .guiMusicPlayerPrevious {
 	position:absolute;
 	bottom:10px;
-	left:1450px;
-	width:46px;
-    height:38px;
+	left:1486px;
+	width:64px;
+    height:64px;
 	background-image:url('images/musicplayer/skip-previous-36x37.png');
 	background-repeat: no-repeat;
     background-position:center;
@@ -2441,9 +2440,9 @@ input[type="password"]
 .guiMusicPlayerPause {
 	position:absolute;
 	bottom:10px;
-	left:1510px;
-	width:46px;
-    height:38px;
+	left:1564px;
+	width:64px;
+    height:64px;
 	background-image:url('images/musicplayer/pause-32x37.png');
 	background-repeat: no-repeat;
     background-position:center;
@@ -2452,9 +2451,9 @@ input[type="password"]
 .guiMusicPlayerNext {
 	position:absolute;
 	bottom:10px;
-	left:1570px;
-	width:46px;
-    height:38px;
+	left:1642px;
+	width:64px;
+    height:64px;
 	background-image:url('images/musicplayer/skip-next-36x37.png');
 	background-repeat: no-repeat;
     background-position:center;
@@ -2534,6 +2533,10 @@ input[type="password"]
 
 .highlightMezzmoBoarder {
 	border:3px solid rgba(141,198,63,1);
+}
+
+.invisibleMezzmoBoarder {
+	border:3px solid rgba(141,198,63,0);
 }
 
 .highlight1Boarder {

@@ -12,7 +12,7 @@ var GuiPage_Search = {
 }
 
 GuiPage_Search.onFocus = function() {
-	GuiHelper.setControlButtons(null,null,null,GuiMusicPlayer.Status == "PLAYING" || GuiMusicPlayer.Status == "PAUSED" ? "Music" : null,"Return");
+	GuiHelper.setControlButtons(null,null,null,GuiMusicPlayer.Status == "PLAYING" || GuiMusicPlayer.Status == "PAUSED" ? "Music" : null,null);
 }
 
 GuiPage_Search.getMaxDisplay = function() {

@@ -61,14 +61,18 @@ GuiPage_ItemDetails.updateSelectedActors = function () {
 }
 
 GuiPage_ItemDetails.updateDisplayedExtras = function() {
-Support.updateDisplayedItems(GuiPage_ItemDetails.TrailersData,GuiPage_ItemDetails.selectedExtra,GuiPage_ItemDetails.topLeftExtra,
-		Math.min(GuiPage_ItemDetails.topLeftExtra + GuiPage_ItemDetails.getMaxDisplayExtra(),GuiPage_ItemDetails.TrailersData.length),"ExtraContent","",false,"");
+	if (GuiPage_ItemDetails.TrailersData != null) {
+		Support.updateDisplayedItems(GuiPage_ItemDetails.TrailersData,GuiPage_ItemDetails.selectedExtra,GuiPage_ItemDetails.topLeftExtra,
+				Math.min(GuiPage_ItemDetails.topLeftExtra + GuiPage_ItemDetails.getMaxDisplayExtra(),GuiPage_ItemDetails.TrailersData.length),"ExtraContent","",false,"");
+	}
 }
 
 //Function sets CSS Properties so show which user is selected
 GuiPage_ItemDetails.updateSelectedExtras = function () {
-	Support.updateSelectedNEW(GuiPage_ItemDetails.TrailersData,GuiPage_ItemDetails.selectedExtra,GuiPage_ItemDetails.topLeftExtra,
-			Math.min(GuiPage_ItemDetails.topLeftExtra + GuiPage_ItemDetails.getMaxDisplayExtra(),GuiPage_ItemDetails.TrailersData.length),"ExtraLandscape highlightMezzmoBoarder","ExtraLandscape","",false,GuiPage_ItemDetails.ItemData.trailerStreams.length);
+	if (GuiPage_ItemDetails.TrailersData != null) {
+		Support.updateSelectedNEW(GuiPage_ItemDetails.TrailersData,GuiPage_ItemDetails.selectedExtra,GuiPage_ItemDetails.topLeftExtra,
+				Math.min(GuiPage_ItemDetails.topLeftExtra + GuiPage_ItemDetails.getMaxDisplayExtra(),GuiPage_ItemDetails.TrailersData.length),"ExtraLandscape highlightMezzmoBoarder","ExtraLandscape","",false,GuiPage_ItemDetails.ItemData.trailerStreams.length);
+	}
 }
 
 GuiPage_ItemDetails.processTrailers = function(trailerData, index, itemId) {
@@ -682,7 +686,7 @@ GuiPage_ItemDetails.openMenu = function() {
 }
 
 GuiPage_ItemDetails.processLeftKey = function() {
-	if (this.selectedExtra > -1) {
+	if (this.ItemData.trailerStreams.length != 0 && this.selectedExtra > -1) {
 		this.selectedExtra--;
 		if (this.selectedExtra == -1) {
 			this.selectedItem = 0;
@@ -697,7 +701,8 @@ GuiPage_ItemDetails.processLeftKey = function() {
 };
 
 GuiPage_ItemDetails.processRightKey = function() {
-	if (this.selectedExtra < this.ItemData.trailerStreams.length) {
+	if (this.selectedExtra < this.ItemData.trailerStreams.length &&
+			this.ItemData.trailerStreams.length != 0) {
 		if (this.selectedItem != -1) {
 			this.selectedItem = -1;
 			this.updateSelectedItems();

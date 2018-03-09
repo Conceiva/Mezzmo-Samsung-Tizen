@@ -671,7 +671,7 @@ GuiDisplay_MediaItems.processSelectedItem = function() {
 		
 		Support.processSelectedItem("GuiDisplay_MediaItems",this.ItemData,this.startParams,this.selectedItem,this.topLeftItem,null,this.genreType,this.isLatest); 	
 
-		if (this.ItemData[this.selectedItem].MediaType == "Audio") {
+		if (this.ItemData != null && this.ItemData[this.selectedItem].MediaType == "Audio") {
 			this.prevSelectedItem = this.selectedItem;
 			this.selectedItem = -1;
 			GuiDisplay_MediaItems.updateSelectedItems();

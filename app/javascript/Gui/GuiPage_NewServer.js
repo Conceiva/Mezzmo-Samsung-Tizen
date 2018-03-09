@@ -7,7 +7,7 @@ var GuiPage_NewServer = {
 
 GuiPage_NewServer.start = function() {
 	console.log("Page Enter : GuiPage_NewServer");
-	GuiHelper.setControlButtons(null,null,null,null,"Return");
+	//GuiHelper.setControlButtons(null,null,null,null,"Return");
 		
 	document.getElementById("Counter").innerHTML = "";
 	
@@ -211,6 +211,7 @@ GuiPage_NewServer.keyDown = function()
 			break;	
 		case Common.API.KEY_ENTER:
 		case Common.API.KEY_PANEL_ENTER:
+		case 65376:
 			console.log("ENTER");
 			this.processServer();
 			break;	

@@ -414,7 +414,7 @@ GuiPlayer.handleOnNetworkDisconnected = function() {
 
 GuiPlayer.handleRenderError = function(RenderErrorType) {
 	FileLog.write("Playback : Render Error " + RenderErrorType);
-    GuiNotifications.setNotification("Rendor Error Type : " + RenderErrorType);
+    GuiNotifications.setNotification("Rendor Error Type : " + RenderErrorType.Number);
     GuiPlayer.stopPlayback();
     GuiPlayer_Display.restorePreviousMenu();
 };
@@ -745,14 +745,22 @@ GuiPlayer.handlePauseKey = function() {
 GuiPlayer.handleFFKey = function() {
 	FileLog.write("Playback : Fast Forward");
     if(this.Status == "PLAYING") {
-    	if (this.PlayMethod == "DirectPlay") {
-    		FileLog.write("Playback : Fast Forward : Direct Play");
-    		GuiPlayer.updateSubtitleTime(this.videoElem.currentTime + 29,"FF");
-        	this.videoElem.currentTime = this.videoElem.currentTime + 30;
-    	} else {
-    		FileLog.write("Playback : Fast Forward : Transcoding");
-    		this.newPlaybackPosition((this.videoElem.currentTime + 30));
-    	}
+		var hms = this.PlayerData.duration;   // your input string
+		var a = hms.split(':'); // split it at the colons
+
+		// minutes are worth 60 seconds. Hours are worth 60 minutes.
+		totalseconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+		
+		if (this.videoElem.currentTime + 30 < totalseconds) {
+	    	if (this.PlayMethod == "DirectPlay") {
+	    		FileLog.write("Playback : Fast Forward : Direct Play");
+	    		GuiPlayer.updateSubtitleTime(this.videoElem.currentTime + 29,"FF");
+	        	this.videoElem.currentTime = this.videoElem.currentTime + 30;
+	    	} else {
+	    		FileLog.write("Playback : Fast Forward : Transcoding");
+	    		this.newPlaybackPosition((this.videoElem.currentTime + 30));
+	    	}
+		}
 		document.getElementById("guiPlayer_Subtitles").style.bottom="100px";
 		if (document.getElementById("guiPlayer_Osd").style.opacity == 0) {
 			$('#guiPlayer_Osd').css('opacity',0).animate({opacity:1}, 500);
@@ -938,7 +946,7 @@ GuiPlayer.newSubtitleIndex = function (newSubtitleIndex) {
 
 GuiPlayer.stopOnAppExit = function() {
 	if (this.videoElem != null) {
-		this.videoElem.Stop();
+		this.videoElem.pause();
 		this.videoElem = null;
 	}
 };

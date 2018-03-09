@@ -26,7 +26,7 @@ var GuiMusicPlayer = {
 }
 
 GuiMusicPlayer.onFocus = function() {
-	GuiHelper.setControlButtons(null,null,null,null,"Return");
+	//GuiHelper.setControlButtons(null,null,null,null,"Return");
 }
 
 GuiMusicPlayer.init = function() {
@@ -118,6 +118,7 @@ GuiMusicPlayer.start = function(title,currentIndex,playedFromPage,isQueue,showTh
 
 	if (title != "Song") { 	
     	for (var index = 0; index < this.ItemData.length; index++) {
+    		this.ItemData[index].index = index;
     		this.queuedItems.push(this.ItemData[index]);
 			this.shuffledItems.push(this.ItemData[index]);
     	}
@@ -188,13 +189,13 @@ GuiMusicPlayer.start = function(title,currentIndex,playedFromPage,isQueue,showTh
 }
 
 GuiMusicPlayer.updateSelectedItem = function() {			
-	document.getElementById("guiMusicPlayerShuffle").className = "guiMusicPlayerShuffle";
-	document.getElementById("guiMusicPlayerRepeat").className = "guiMusicPlayerRepeat";
-	document.getElementById("guiMusicPlayerPlay").className = "guiMusicPlayerPlay";
-	document.getElementById("guiMusicPlayerStop").className = "guiMusicPlayerStop";
-	document.getElementById("guiMusicPlayerPrevious").className = "guiMusicPlayerPrevious";
-	document.getElementById("guiMusicPlayerPause").className = "guiMusicPlayerPause";
-	document.getElementById("guiMusicPlayerNext").className = "guiMusicPlayerNext";
+	document.getElementById("guiMusicPlayerShuffle").className = "guiMusicPlayerShuffle invisibleMezzmoBoarder";
+	document.getElementById("guiMusicPlayerRepeat").className = "guiMusicPlayerRepeat invisibleMezzmoBoarder";
+	document.getElementById("guiMusicPlayerPlay").className = "guiMusicPlayerPlay invisibleMezzmoBoarder";
+	document.getElementById("guiMusicPlayerStop").className = "guiMusicPlayerStop invisibleMezzmoBoarder";
+	document.getElementById("guiMusicPlayerPrevious").className = "guiMusicPlayerPrevious invisibleMezzmoBoarder";
+	document.getElementById("guiMusicPlayerPause").className = "guiMusicPlayerPause invisibleMezzmoBoarder";
+	document.getElementById("guiMusicPlayerNext").className = "guiMusicPlayerNext invisibleMezzmoBoarder";
 	
 	switch (this.selectedItem ) {
 
@@ -341,7 +342,7 @@ GuiMusicPlayer.keyDown = function() {
 				
 				//Hide colour buttons if a slideshow is running.
 				if (GuiImagePlayer.ImageViewer != null){
-					GuiHelper.setControlButtons(null,null,null,null,null);
+					//GuiHelper.setControlButtons(null,null,null,null,null);
 				}
 				
 				//Set Page GUI elements Correct & Set Focus
@@ -419,7 +420,7 @@ GuiMusicPlayer.stopPlayback = function() {
 GuiMusicPlayer.handleStopKey = function() {
 	console.log ("STOPPING PLAYBACK");
 	this.stopPlayback();
-	GuiHelper.setControlButtons(0,0,0,null,0);
+	//GuiHelper.setControlButtons(0,0,0,null,0);
 	this.returnToPage();
 }
 
@@ -597,7 +598,8 @@ GuiMusicPlayer.handlePreviousKey = function() {
 
 GuiMusicPlayer.shuffleArray = function(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
-
+  var currentPlayingIndex = this.currentPlayingItem;
+  
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
 
@@ -609,20 +611,22 @@ GuiMusicPlayer.shuffleArray = function(array) {
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
-	if (this.currentPlayingItem == currentIndex) {
-		this.currentPlayingItem = randomIndex;
+	if (this.currentPlayingItem == array[currentIndex].index) {
+		currentPlayingIndex = currentIndex;
 	}
-	else if (this.currentPlayingItem == randomIndex) {
-		this.currentPlayingItem = currentIndex;
+	else if (this.currentPlayingItem == array[randomIndex].index) {
+		currentPlayingIndex = randomIndex;
 	}
   }
 
+  this.currentPlayingItem = currentPlayingIndex;
   return array;
 }
 
 GuiMusicPlayer.handleShuffle = function() {
 	if (this.shuffle == 'on') {
 		this.shuffle = 'off';
+		this.currentPlayingItem = this.shuffledItems[this.currentPlayingItem].index;
 		document.getElementById("guiMusicPlayerShuffle").style.backgroundImage="url('images/musicplayer/shuffle_off.png')";
 	}
 	else if (this.shuffle == 'off') {
