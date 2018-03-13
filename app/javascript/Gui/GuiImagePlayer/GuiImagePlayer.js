@@ -136,7 +136,21 @@ GuiImagePlayer.setSlideshowMode = function() {
     	var width = GuiImagePlayer.ItemData[GuiImagePlayer.imageIdx].contentWidth;
     	var height = GuiImagePlayer.ItemData[GuiImagePlayer.imageIdx].contentHeight;
     	context.clearRect(0, 0, GuiImagePlayer.Canvas.width, GuiImagePlayer.Canvas.height);
-    	context.drawImage(GuiImagePlayer.ImageViewer, 0, 0, width, height, 0, 0, GuiImagePlayer.Canvas.width, GuiImagePlayer.Canvas.height);
+    	
+    	var hRatio = width / GuiImagePlayer.Canvas.width  ;
+	    var vRatio = height / GuiImagePlayer.Canvas.height;
+	    var ratio  = Math.min ( hRatio, vRatio );
+	    if (ratio < 0.3) {
+	    	ratio = 1;
+	    }
+	    else if (ratio > 1) {
+	    	var hRatio =GuiImagePlayer.Canvas.width / width;
+		    var vRatio = GuiImagePlayer.Canvas.height / height;
+		    var ratio  = Math.min ( hRatio, vRatio );
+	    }
+	    var centerShift_x = ( GuiImagePlayer.Canvas.width - width*ratio ) / 2;
+	    var centerShift_y = ( GuiImagePlayer.Canvas.height - height*ratio ) / 2; 
+    	context.drawImage(GuiImagePlayer.ImageViewer, 0, 0, width, height, centerShift_x, centerShift_y, width * ratio, height * ratio);
 	
 		clearTimeout(GuiImagePlayer.Timeout);
 		Support.setImagePlayerOverlay(GuiImagePlayer.overlay[GuiImagePlayer.imageIdx], GuiImagePlayer.overlayFormat);
@@ -165,6 +179,9 @@ GuiImagePlayer.prepImage = function(imageIdx) {
 GuiImagePlayer.playImage = function() {	
 	var url = GuiImagePlayer.images[GuiImagePlayer.imageIdx];
 	GuiImagePlayer.ImageViewer.src = url;	
+
+	var context = GuiImagePlayer.Canvas.getContext('2d');
+	context.clearRect(0, 0, GuiImagePlayer.Canvas.width, GuiImagePlayer.Canvas.height);
 }
 
 

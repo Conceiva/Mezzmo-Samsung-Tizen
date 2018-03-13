@@ -32,10 +32,16 @@ GuiPage_Search.start = function(title, url, term) {
 	Support.fadeImage("images/searchbg.jpg");
 	
 	//Change Display
-	document.getElementById("pageContent").innerHTML = "<div id='title' class='EpisodesSeriesInfo'>Search</div><div class='SearchPageInput'> \
+	document.getElementById("pageContent").innerHTML = "<div id=SeriesContent class='SeriesContent'>" +
+						"<div id='SearchPoster' class='FilmInfoLogo'></div>" +
+						"<div id='SeriesTitle' class='SeriesTitle'>" + title + "</div>" +
+						"<div id='SeriesSubData' class='SeriesSubData'></div>" +
+						"<div id='SeriesOverview' class='SeriesOverview'>Enter a word to search for media:</div>" +
+					"</div><div class='SearchPageInput'> \
 		<form><input id='searchInput' type='text' size='50' value=''/></form> \
 		</div><div id='ResultsTitle' class='SearchPageTitle'></div><div id=Results class='SearchPageResults'></div>";
-	
+
+	document.getElementById("SearchPoster").style.backgroundImage="url('images/ic_search_white.png')";
 	document.getElementById("searchInput").value = term;
 	
 	//Allows time for innerhtml to execute before creating ime
@@ -45,7 +51,7 @@ GuiPage_Search.start = function(title, url, term) {
 		
 		if (title !== undefined && url !== undefined && title != null && url != null) {
 	    	
-	    	document.getElementById("ResultsTitle").innerHTML = title;
+	    	document.getElementById("ResultsTitle").innerHTML = "";
 	    	
 	    	//Must turn off as cannot catch keys during IME!
 	    	Support.screensaverOff();

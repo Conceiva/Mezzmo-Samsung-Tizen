@@ -8,7 +8,7 @@
 </Reference>
 <Reference URI="Main.css">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>4WcjlwKYUsgp9Fd66BNLWWtWySxfPO9Q+9r8GN/H26c=</DigestValue>
+<DigestValue>uyDSw0tbViekQasNXMa1M0Wvfk1/vuI7sSackkzkxdY=</DigestValue>
 </Reference>
 <Reference URI="README.md">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -24,7 +24,7 @@
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiImagePlayer%2FGuiImagePlayer.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>zs+eExQCCguiS2AD5RWtbIGzDcFWRCTh8UTimAo+EMM=</DigestValue>
+<DigestValue>1gq6a8wFN6Qh5cUg2zxnbxvpKFoux6zCd54vDUii8pM=</DigestValue>
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiImagePlayer%2FGuiImagePlayer_Screensaver.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,7 +48,7 @@
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiPage_Search.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>eFIJInHjGk+FvGmGv1zXrIkJ4aO1OYosKJi2bvKfxPc=</DigestValue>
+<DigestValue>SD6oByDq9HffuOAAWjhfJq/Nb9E8d5ZUOKVeQiWx//M=</DigestValue>
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiPage_Servers.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -92,7 +92,7 @@
 </Reference>
 <Reference URI="app%2Fjavascript%2FSupport.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>IIU0cyOlecpDqdGSMXnQuZCMaFsqqIA/ajwt9a/cjcU=</DigestValue>
+<DigestValue>HE/VjakZsTivFJ7jP4UtmSp6pM7IkKyehruSOeoWR8w=</DigestValue>
 </Reference>
 <Reference URI="app%2Fjavascript%2FSupport%2FFile.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -140,7 +140,7 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>mjgdYlgrzO0g3xhtePetzC0U4+Te8IufUVt+6MNKi1c=</DigestValue>
+<DigestValue>zKSin0+BvX8IvtKALJ7d5lUqmaQK+Ms5yKG1hjq1hxE=</DigestValue>
 </Reference>
 <Reference URI="bgimage.jpg">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -759,9 +759,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-WRDQxfrRvZWcSD7FHKOgFCATI4L92HhJo+woST3XBncRSt7R4u3lSQi19o4zFFhQiLVPO27bjj1d
-vNI+uKoI3b8GxD3q3QOBnRhY6VJ8x5XGReAzv586RXlBg9P8gH5HpGlgnEElf+JMm+n/X+ev/lwW
-aHsmUOmPfXSOSw+Np4s=
+Pn+gwOdRs0oAww7VoKftVGS8YJ+kVuwjorou33x6OY7UnSJDQoQSKeOigYr0vXwXXA31UVclGPLC
+vmV9+NBA6V3ZRfGI79RQXOIeXJxjgXU48GKQrh0eG0ubr2Z81rSa4nLeyctwxB4CFdPfUvT+akWw
+sIebxqDsZ7vAQVFWLmQ=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

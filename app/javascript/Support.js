@@ -938,7 +938,9 @@ Support.processHomePageMenu = function (menuItem) {
 		GuiPage_Servers.start();
 		break;		
 	case "Music":
-		GuiMusicPlayer.showMusicPlayer("GuiDisplay_MediaItems",GuiDisplay_MediaItems.ItemData[GuiDisplay_MediaItems.selectedItem].id,document.getElementById(GuiDisplay_MediaItems.ItemData[GuiDisplay_MediaItems.selectedItem].id).className);
+		if (GuiDisplay_MediaItems.ItemData[GuiDisplay_MediaItems.selectedItem] != null) {
+			GuiMusicPlayer.showMusicPlayer("GuiDisplay_MediaItems",GuiDisplay_MediaItems.ItemData[GuiDisplay_MediaItems.selectedItem].id,document.getElementById(GuiDisplay_MediaItems.ItemData[GuiDisplay_MediaItems.selectedItem].id).className);
+		}
 		break;
 	}
 }

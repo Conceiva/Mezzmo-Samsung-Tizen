@@ -460,8 +460,8 @@ input[type="password"]
 
 .SearchPageInput {
 	position:absolute;
-	top:190px;
-	left:140px;
+	top:270px;
+	left:660px;
 	width:600px;
 	text-align:center;
 	z-index:5;

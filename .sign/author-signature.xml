@@ -8,7 +8,7 @@
 </Reference>
 <Reference URI="Main.css">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>4WcjlwKYUsgp9Fd66BNLWWtWySxfPO9Q+9r8GN/H26c=</DigestValue>
+<DigestValue>uyDSw0tbViekQasNXMa1M0Wvfk1/vuI7sSackkzkxdY=</DigestValue>
 </Reference>
 <Reference URI="README.md">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -24,7 +24,7 @@
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiImagePlayer%2FGuiImagePlayer.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>zs+eExQCCguiS2AD5RWtbIGzDcFWRCTh8UTimAo+EMM=</DigestValue>
+<DigestValue>1gq6a8wFN6Qh5cUg2zxnbxvpKFoux6zCd54vDUii8pM=</DigestValue>
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiImagePlayer%2FGuiImagePlayer_Screensaver.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,7 +48,7 @@
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiPage_Search.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>eFIJInHjGk+FvGmGv1zXrIkJ4aO1OYosKJi2bvKfxPc=</DigestValue>
+<DigestValue>SD6oByDq9HffuOAAWjhfJq/Nb9E8d5ZUOKVeQiWx//M=</DigestValue>
 </Reference>
 <Reference URI="app%2Fjavascript%2FGui%2FGuiPage_Servers.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -92,7 +92,7 @@
 </Reference>
 <Reference URI="app%2Fjavascript%2FSupport.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>IIU0cyOlecpDqdGSMXnQuZCMaFsqqIA/ajwt9a/cjcU=</DigestValue>
+<DigestValue>HE/VjakZsTivFJ7jP4UtmSp6pM7IkKyehruSOeoWR8w=</DigestValue>
 </Reference>
 <Reference URI="app%2Fjavascript%2FSupport%2FFile.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -755,9 +755,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-aOUVY9fcb7jGiQGPwAcd9hkt90j06nb9XEzuQ4TVjJJScsfQsS9PCqJN8Mvc7eCC3stvoPYoO9wf
-kaOHv+Tbv4cGTqo9ZDE5bn20o9uJmWgG1TJO/gt08sRQ4it6qprdG68BJQVMMiGI0vZ1CWA52pDX
-5G+dOULWhU/uepmY0c8=
+hxzTzm6znDqsrSbADKWA+2jS9W/9Eq2p2zknfYWHSAMom7HPj+t+cILYNiol/rUdkQpL/csG1qFb
+xwN3PB6ExwPXtaENVkryYroZKX6u+pdLPWq+fuQj4BlQV2zBS/CT7UkOOBpC1bhYbGKlW9vTCBzZ
+J3E7QXGp3PEIF/zDRE4=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
